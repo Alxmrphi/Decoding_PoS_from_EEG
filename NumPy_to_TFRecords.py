@@ -46,7 +46,7 @@ pos2code = {"NOUN":500, "VERB":501, "ADJ":502, "DET":503, "PRON":504,
             "NUM":510, "PART":511, "PROPN":512, "PUNCT":513, "SCONJ":514, "X":516}
 
 
-def convert(data, labels, n_per_tf, category, n_avg, wr, save_misc):
+def convert(data, labels, n_per_tf, category, n_avg, wr, save_misc) -> None:
     """ Convert NumPY EEG data to TFRecords
     
     Args:
@@ -59,7 +59,7 @@ def convert(data, labels, n_per_tf, category, n_avg, wr, save_misc):
         save_misc: Any other adhoc addition to filename while saving
     """
     
-    max_range = (len(data) // n_per_tfr) + 1
+    max_range = (len(data) // n_per_tf) + 1
     idx = [n_per_tf * i for i in range(max_range+1)]
     loop_idx = list(zip(idx, idx[1:]))
 
@@ -72,7 +72,7 @@ def convert(data, labels, n_per_tf, category, n_avg, wr, save_misc):
         file_path = f'{category}_{n_avg}_train{wr}{save_misc}_file{i}.tfrecords'
 
         with tf.io.TFRecordWriter(file_path) as writer:
-            for sample, label in zip(train_x, train_y):
+            for sample, label in zip(data, labels):
                 serialised_example = encode_single_example(sample, label)                              
                 writer.write(serialised_example)
 
