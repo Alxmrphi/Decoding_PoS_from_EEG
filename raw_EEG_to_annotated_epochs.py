@@ -140,7 +140,7 @@ for file in subfolders:
         
     print(file)
     
-    # Look for the ICA done file and check it exists
+    # Look for the preprocessed file and check it exists
     eeg_file = glob.glob(f'{file}//*noica*.fif')
      
     event_file = glob.glob(f'{file}/events_downsampled*.npy')
