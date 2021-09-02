@@ -1496,6 +1496,7 @@ def pretrain(offset=0,
     filename_pattern_test_wr = f'{pattern}_test_wr_*.tfrecords'
     filename_pattern_train = f'{pattern}_train*.tfrecords'
     filename_pattern_dev = f'{pattern}_dev_*.tfrecords'
+
   elif what == 'pretrain_10_3_1':
     model_dir = 'models/ttl=720d/pretrain/' + name + '/'
 
@@ -1593,6 +1594,20 @@ def pretrain(offset=0,
     patterns = ['unigram_6class_avg3']
     patterns_test = ['unigram_6class_avg1']
     avgs = ['3']
+
+    max_target_length = 176
+    N_CLASS = 6
+
+  elif what == 'pretrain_10_alex':
+    model_dir = 'models/ttl=720d/pretrain/' + name + '/'
+
+    path_avg1 = 'content/drive/My Drive/Bernd_EEG/data/unigram_6class/diversity_tests/'
+    path_avg10 = 'content/drive/My Drive/Bernd_EEG/data/unigram_6class/diversity_tests/'
+
+    paths = [path_avg10]
+    patterns = ['unigram_6class_avg10_small_3to5']
+    patterns_test = ['unigram_6class_avg1_small_3to5']
+    avgs = ['10']
 
     max_target_length = 176
     N_CLASS = 6
